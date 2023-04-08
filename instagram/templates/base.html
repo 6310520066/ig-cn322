@@ -1,0 +1,169 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Direct Message!</title>
+    <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/navbar.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="  https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+  </head>
+  <body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="{%url 'instagram:home'%}">
+      <img src="{% static 'images/Instagram_logo.png' %}" width="64" height="64">
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <ul class="icons m-0">
+    <li class="nav-item">
+      <a class="nav-link mr-0" href="{%url 'instagram:home'%}">
+        <img src="../../static/images/home1.png" alt="" class="nav-icon" height="20" />
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link mr-0" href="http://127.0.0.1:8000/direct_message/">  
+        <img src="../../static/images/send.png" alt="" class="nav-icon" />
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link mr-0" href="{%url 'instagram:upload'%}">
+        <img src="../../static/images/more.png" alt="" class="nav-icon" />
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'instagram:notifications' %}">
+        <img src="../../static/images/heart.png" alt="" class="nav-icon" />
+          {% if request.user.notifications.unread.count %}
+              <span class="badge badge-pill badge-danger">{{ request.user.notifications.unread.count }}</span>
+          {% endif %}
+      </a>
+    </li>
+
+    <li class="nav-item dropdown mr-5">
+      <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src="{{user.profile.profile_picture.url}}" alt="" class="nav-user" />
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{%url 'instagram:profile' username=user %}">Profile</a>
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/logout">Logout</a>
+      </div>
+    </li>
+  </ul>
+
+  <!-- <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a href="http://127.0.0.1:8000/" class="navbar-item">
+        <i class="material-icons">home</i>
+        Home
+      </a>
+
+      <a class="navbar-item">
+        <i class="material-icons">explore</i>
+        Explore
+      </a>
+
+      <a href="http://127.0.0.1:8000/" class="navbar-item">
+        <i class="material-icons">notifications</i>
+        Notifications
+        {% if count_notifications %}
+          <span class="badge">{{ count_notifications }}</span>
+        {% endif %}
+      </a>
+
+      <a href="http://127.0.0.1:8000/direct_message/" class="navbar-item">
+        <i class="material-icons">inbox</i>
+        Inbox
+        {% if directs_count %}
+        <span class="badge">{{ directs_count }}</span>
+        {% endif %}
+      </a>
+      
+        <p style="margin-top: 15px;">Account - </p>
+        <strong style="margin-top: 15px;"> {{ request.user }}</strong>
+      {% comment %} <a href="{% url 'profile' request.user %}" class="navbar-item">
+        <i class="material-icons">face</i>
+        Profile - <strong>{{ request.user }}</strong>
+      </a> {% endcomment %}
+
+        {% comment %} <a href="{% url 'newpost' %}" class="navbar-item">
+          <i style="color: green;" class="material-icons">perm_media</i>
+          <strong>New Post</strong>
+        </a>
+
+        <a href="{% url 'newstory' %}" class="navbar-item">
+          <i style="color: green;" class="material-icons">photo_filter</i>
+          <strong>New Story</strong>
+        </a> {% endcomment %}
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Settings
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            Change password
+          </a>
+          <a class="navbar-item">
+            Contact
+          </a>
+          <a class="navbar-item">
+            Report an issue
+          </a>
+          <hr class="navbar-divider">
+          {% comment %} <a href="{% url 'logout' %}" class="navbar-item"> {% endcomment %}
+            Log out
+          </a>
+        </div>
+      </div>
+    </div> -->
+    
+
+  </div>
+</nav>
+
+
+      {% block banner %}
+      {% endblock %}
+
+  <section class="section">
+    <div class="container">
+
+      {% block content %}
+      {% endblock %}
+
+
+      {% block pagination %}
+      {% endblock %}
+
+    </div>
+  </section>
+
+
+
+  </body>
+ 
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!-- <script src="{% static 'js/init.js' %}"></script>
+  <script src="{% static 'js/slider.js' %}"></script> -->
+</html>

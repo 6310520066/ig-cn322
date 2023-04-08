@@ -1,0 +1,55 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+
+<!-- bootstrap -->
+
+{% load bootstrap4 %}
+<!-- content -->
+{% block content %} {% load static %}
+<head>
+  <link rel="stylesheet" href="{% static 'src/css/style.css' %}" />
+</head>
+<div class="instagram-container">
+  <div class="phone">
+    <img src="{% static 'src/imgs/foto-celular.png' %}" alt="Celular com app do instagram aberto.">
+  </div>
+  <div class="continue">
+<div class="container mt-5">
+  <div class="login-form">
+    <p class="logo text-center">
+      <img src="../../static/images/Instagram_logo.png" alt="" />
+    </p>
+
+    <form action="" method="post" novalidate>
+      {%csrf_token%} {% bootstrap_form form %}
+      <button type="submit" class="btn btn-info btn-block mx-auto">
+        Log In
+      </button>
+     
+    </form>
+    <!-- <span><hr style="width:30%;">OR <hr style="width:30%; float: right;"></span> -->
+    <div class="password text-center mt-3">
+      <a href="" class="mx-auto mb-3">Forgot password? </a>
+    </div>
+    <hr />
+    <div class="reg-link text-center">
+      Don't have an account?
+      <a href="{% url 'instagram:signup' %}">Sign up</a>
+    </div>
+    <div class="store">
+      <p>Get the app.</p>
+      <div class="buttons">
+        <a href="https://apps.apple.com/us/app/instagram/id389801252" target="_blank">
+          <img src="{% static 'src/imgs/app-store.png' %}" alt="Apple store"></a>
+        <a href="https://play.google.com/store/apps/details?id=com.instagram.android" target="_blank">
+          <img src="{% static 'src/imgs/google-store.png' %}" alt="Google store"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+{% endblock %}
