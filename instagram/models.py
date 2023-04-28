@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from model_utils import Choices
+from django.utils import timezone
 
 
 
@@ -147,7 +148,7 @@ class Report(models.Model):
     post = models.ForeignKey('instagram.Image', on_delete=models.CASCADE)
     reason = models.CharField(choices=REASONS, max_length=20)
     description = models.TextField(blank=True)
-    created_at = models.DateTimeField(auto_now_add="")
+    created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f'{self.user.username} reported {self.post.name} for {self.reason}'

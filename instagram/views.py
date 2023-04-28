@@ -243,7 +243,7 @@ def report_post(request, post_id):
         report = Report(user=request.user, post=post, reason=reason, description=description)
         report.save()
         messages.success(request, 'Thank you for your report.')
-        return redirect('instagram:view_post', post.id) 
+        return redirect('instagram:home') 
 
     return render(request, 'instagram/report_post.html', {'post': post, 'id': post.id})
 

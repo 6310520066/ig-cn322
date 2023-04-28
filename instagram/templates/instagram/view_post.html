@@ -13,7 +13,7 @@
           <img src="{{post.user.profile_picture.url}}" alt="" />
         </div>
         <a class="user_name ml-1 mb-2" href="{%url 'instagram:user_profile' username=user %}" style="color: black; text-decoration: none;">{{post.user.user.username}} </a>
-        <a href="{% url 'instagram:report_post' post.id %}" class="btn btn-light btn-sm" type="submit" style="position: absolute; right: 0px;">Report</a>
+        <a href="{% url 'instagram:report_post' post.id %}" class="btn btn-light btn-sm" type="submit" style="position: absolute; right: 15px;">Report</a>
       </div>
       <hr class="m-0" />
       <div class="post">
