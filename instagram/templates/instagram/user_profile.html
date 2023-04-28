@@ -2,7 +2,7 @@
 <!-- html -->
 {% block content %}
 <!-- content -->
-<div class="container-fluid m-5">
+<div class="container-fluid">
   <div class="user_profile">
     <div class="image">
       {% if profile.profile_picture %}
@@ -27,7 +27,7 @@
         <p class="">{{profile.bio}}</p>
       </div>
       <div class="third">
-        <div class="posts ml-3"><span>{{posts.count}}</span> posts</div>
+        <div class="posts"><span>{{posts.count}}</span> posts</div>
         <div class="followers ml-3">
           <span>{{user_select.followers.count}}</span> followers
         </div>
@@ -37,13 +37,15 @@
       </div>
     </div>
   </div>
-  <hr />
+  <hr style="margin-left: 100px; margin-right: 100px;">
+
   <div class="user-posts">
     <div class="row">
       {% for post in posts %}
+
       <div class="col-md-4">
         <div class="post-wrapper">
-          <a href="{%url 'instagram:view_post' post.id %}">
+          <a href="{%url 'instagram:view_post' post.id %}" >
             <img class="img-responsive" src="{{post.image.url}}" alt="..." />
           </a>
         </div>

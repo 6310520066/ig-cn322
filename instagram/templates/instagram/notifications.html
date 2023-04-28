@@ -5,8 +5,8 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <h4 class="text-center mb-3">Notifications</h4>
-        <hr> 
+        <h4 class="text-center mb-3 mt-3">Notifications</h4>
+        <hr>  
         {% for notification in notifications %}
           <div class="d-flex align-items-center mb-3">
             <img src="{{notification.sender.profile.profile_picture.url}}" alt="Profile Picture" class="mr-3 rounded-circle" style="max-width: 50px;">
@@ -14,7 +14,7 @@
               <p class="mb-0"><b>{{ notification.sender }}</b> liked your post.</p>
             </div>
             <div class="ml-3">
-              <a href="{% url 'instagram:view_post' notification.post.id %}" class="btn btn-primary btn-sm">View post</a>
+              <a href="{% url 'instagram:view_post' notification.post.id %}" class="btn btn-primary btn-sm" style="border-radius: 20px;">View post</a>
             </div>
           </div>
         {% endfor %}    
@@ -26,7 +26,7 @@
               <p class="mb-0"><b>{{ noticomment.sender }}</b> commented on your post.</p>
             </div>
             <div class="ml-3">
-              <a href="{% url 'instagram:view_post' noticomment.post.id %}" class="btn btn-primary btn-sm">View post</a>
+              <a href="{% url 'instagram:view_post' noticomment.post.id %}" class="btn btn-primary btn-sm" style="border-radius: 20px;">View post</a>
             </div>
           </div>
         {% endfor %}
@@ -43,9 +43,9 @@
         <form action="{% url 'instagram:clear_notifications' %}" method="POST">
           {% csrf_token %}
           <p style="text-align: center;">
-            <button type="submit" class="btn btn-danger mt-3" style="position: fixed; bottom: 20px;">Clear notifications</button>
+            <button type="submit" class="btn btn-danger" 
+              style="position: fixed; left: 50%; bottom: 10px; transform: translate(-50%, -50%); margin: 0 auto; border-radius: 20px;">Clear notifications</button>
           </p>
-          
         </form>
       </div>
     </div>

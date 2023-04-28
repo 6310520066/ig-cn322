@@ -28,6 +28,7 @@ path('add_comment/<int:post_id>',add_comment, name='add_comment'),
 path('like_post/<int:post_id>',like_post, name='like_post'),
 path('notifications/', notifications, name='notifications'),
 path('clear_notifications/', clear_notifications, name='clear_notifications'),
+path('<int:post_id>/', report_post, name='report_post'),
 
 ]
 

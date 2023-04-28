@@ -12,16 +12,23 @@
         <div class="image">
           <img src="{{post.user.profile_picture.url}}" alt="" />
         </div>
-        <div class="user_name ml-1 mb-2">{{post.user.user.username}}</div>
+        <a class="user_name ml-1 mb-2" href="{%url 'instagram:user_profile' username=user %}" style="color: black; text-decoration: none;">{{post.user.user.username}} </a>
+        <a href="{% url 'instagram:report_post' post.id %}" class="btn btn-light btn-sm" type="submit" style="position: absolute; right: 0px;">Report</a>
       </div>
-      <hr />
+      <hr class="m-0" />
       <div class="post">
-        <span class="user_name"> {{post.user.user.username}} </span>
-        {{post.name}}
-        <p class="post_caption">{{post.caption}}</p>
+        <div class="comment_wrapper">
+          <img src="{{post.user.profile_picture.url}}" alt="" class="user-comment-owner"/>
+        <div class="comment_user user_name mr-2">
+          <a class="user_name ml-1 mb-2" href="{%url 'instagram:user_profile' username=user %}" style="color: black; text-decoration: none;">{{post.user.user.username}} </a>
+        </div>
+        <div class="comment-comment mt-3">
+          <p>{{post.caption}}</p>
+        </div>
+        </div>
       </div>
       <div class="comments-wrapper">
-        <h4 class="text-center">Comments</h4>
+        <!-- <h4 class="text-center">Comments</h4> -->
         {% for comment in comments %}
         <div class="comment_wrapper">
           <div class="comment_user user_name mr-2">
@@ -29,14 +36,14 @@
               <div class="image">
                 <img src="{{comment.user.profile.profile_picture.url}}" alt="" />
               </div>
-              <div class="user_name ml-1 mb-2">{{comment.user.username}}</div>
+              <a class="user_name ml-1 mb-2" href="{%url 'instagram:user_profile' username=user %}" style="color: black; text-decoration: none;">{{comment.user.username}}</a>
             </div>
           </div>
           <div class="comment-comment mt-3">
-            <p>...{{comment.comment.capitalize}}</p>
+            <p>{{comment.comment.capitalize}}</p>
           </div>
         </div>
-        <hr class="m-1 p-0" />
+        <!-- <hr class="m-1 p-0" /> -->
         {%empty%}
         <h5>No comments</h5>
         {% endfor %}
