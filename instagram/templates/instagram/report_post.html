@@ -1,0 +1,57 @@
+{% extends 'instagram/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mx-auto mt-8">
+  <div class="grid grid-cols-12 gap-8">
+    <div class="col-start-5 col-span-4">
+
+      <h1 class="text-3xl font-bold mb-4">Report post</h1>
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" for="reason">Reason:</label>
+          <div class="relative">
+            <select id="reason" name="reason"
+              class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+              <option value="spam">spam</option>
+              <option value="nudity">Nudity or sexual activity</option>
+              <option value="hate_speed">Hate speech or symbols</option>
+              <option value="violence">Violence or dangerous organizations</option>
+              <option value="bullying">Bullying or harassment</option>
+              <option value="intellectual">Intellectual property violation</option>
+              <option value="suicide">Suicide or self-injury</option>
+              <option value="scam">Scam or fraud</option>
+              <option value="information">False information</option>
+              <option value="self">I just do not like it</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                  d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                <path fill-rule="evenodd"
+                  d="M2.608 5.304a1 1 0 011.414 0L10 11.586l5.978-5.978a1 1 0 111.414 1.414L10.707 13a1 1 0 01-1.414 0L2.608 6.718a1 1 0 010-1.414z"
+                  clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" for="description">Description:</label>
+          <textarea id="description" name="description"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            rows="5"></textarea>
+        </div>
+        <button type="submit"
+          class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Submit report
+        </button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -5,13 +5,12 @@
 {% block content %}
 
   <div class="columns is-mobile">
-  
-
   <div class="column is-one-quarter">
   <aside class="menu">
-    <h1 class="title is-2">
+    <h1 class="title is-2" style="text-align: center;">
     Messages
     </h1>
+    <a href="{% url 'usersearch' %}" class="button is-success" style="background-color:blue; margin-left: 65px; margin-bottom: 20px;" >New message</a>
   <ul style="overflow-y: scroll; height: 500px" class="menu-list">
 
 {% for message in messages %}
@@ -20,13 +19,16 @@
 <div class="box">
   <article class="media">
     <div class="media-left">
-      <figure class="image is-64x64">
+      <figure class="image">
           {% if message.user.profile.picture %}
-            <img src="{{ message.user.profile.picture.url }}" alt="Placeholder image">
+          <!-- {{user.profile.profile_picture.url}} -->
+            <img src="{{user.profile.profile_picture.url}}" alt="Placeholder image">
           {% else %}
-            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+          <!-- https://bulma.io/images/placeholders/128x128.png -->
+          <img src="../../static/images/person.png" alt="Placeholder image" style="  height: 45px; width: 45px; border-radius: 50%; object-fit: cover;">
           {% endif %}
       </figure>
+     
     </div>
     <div class="media-content">
 
@@ -53,8 +55,6 @@
   </ul>
   </aside>
 <br>
-<a href="{% url 'usersearch' %}" class="button is-success" style="background-color:blue;">New message</a>
-
 </div>
 
 <div class="column">
@@ -87,14 +87,14 @@
 <article class="media">
   <figure class="media-left">
     <p class="image is-64x64">
-      <img src="https://bulma.io/images/placeholders/128x128.png">
+      <img src="{{user.profile.profile_picture.url}}" style="  height: 64px; width: 64px; border-radius: 50%; object-fit: cover;">
     </p>
   </figure>
   <div class="media-content">
     <input type="hidden" name="to_user" value="{{ active_direct }}">
     <div class="field">
       <p class="control">
-        <textarea class="textarea" name="body" placeholder="Add a comment..."></textarea>
+        <textarea class="textarea" name="body" placeholder="Add a messages"></textarea>
       </p>
     </div>
     <nav class="level">

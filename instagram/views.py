@@ -231,3 +231,19 @@ def clear_notifications(request):
 
     # Redirect to the notifications page
     return HttpResponseRedirect(reverse('instagram:notifications'))
+
+
+@login_required(login_url='/accounts/login/')
+def report_post(request, post_id):
+    post = Image.objects.get(id=post_id)
+
+    if request.method == 'POST':
+        reason = request.POST.get('reason')
+        description = request.POST.get('description', '')
+        report = Report(user=request.user, post=post, reason=reason, description=description)
+        report.save()
+        messages.success(request, 'Thank you for your report.')
+        return redirect('instagram:home') 
+
+    return render(request, 'instagram/report_post.html', {'post': post, 'id': post.id})
+

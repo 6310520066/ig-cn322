@@ -4,6 +4,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from model_utils import Choices
+from django.utils import timezone
 
 
 
@@ -128,3 +130,25 @@ class Notification(models.Model):
     post = models.ForeignKey(Image, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
+
+class Report(models.Model):
+    REASONS = Choices( 
+        ('spam', 'Spam'),
+        ('nudity', 'Nudity or sexual activity'),
+        ('hate_speed', 'Hate speech or synbols'),
+        ('violence', 'Violence or dangerous organizations'),
+        ('bullying', 'Bullying or harassment'),
+        ('intellectual', 'Intellectaul property violation'),
+        ('suicide', 'Suicide or self-injury'),
+        ('scam', 'Scam or fraud'),
+        ('information', 'False information'),
+        ('self', 'I just do not like it')
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey('instagram.Image', on_delete=models.CASCADE)
+    reason = models.CharField(choices=REASONS, max_length=20)
+    description = models.TextField(blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f'{self.user.username} reported {self.post.name} for {self.reason}'
